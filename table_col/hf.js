@@ -37,46 +37,40 @@ table.appendChild(thead);
 const tr = document.createElement('tr');
 thead.appendChild(tr);
 
-const th1 = document.createElement('th');
-th1.innerText = 'Szerző neve';
-tr.appendChild(th1);
-
-const th2 = document.createElement('th');
-th2.innerText = 'Korszak';
-tr.appendChild(th2);
-
-const th3 = document.createElement('th');
-th3.innerText = 'Szerelmek';
-th3.colSpan = 2
-tr.appendChild(th3);
+createElement('th', "Szerző neve", tr)
+createElement('th', "Korszak", tr)
+const th3 = createElement('th', "Szerelmek", tr)
 
 //tbody, td-k
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
 
 for (const a of arr) {
-    const tr = document.createElement('tr');
-    tbody.appendChild(tr);
+    const tr2 = document.createElement('tr');
+    tbody.appendChild(tr2);
 
-    const tr_td1 = document.createElement('td');
-    tr_td1.innerText = a.writer;
-    tr.appendChild(tr_td1);
+    //const tr_td1 = document.createElement('td');
+    //tr_td1.innerText = a.writer;
+    //tr.appendChild(tr_td1);
 
-    const tr_td2 = document.createElement('td');
-    tr_td2.innerText = a.time;
-    tr.appendChild(tr_td2);
+    //const tr_td2 = document.createElement('td');
+    //tr_td2.innerText = a.time;
+    //tr.appendChild(tr_td2);
 
-    const tr_td3 = document.createElement('td');
-    tr_td3.innerText = a.lover;
-    tr.appendChild(tr_td3);
+    //const tr_td3 = document.createElement('td');
+    //tr_td3.innerText = a.lover;
+    //tr.appendChild(tr_td3);
 
-    if(a.otherlover == undefined) {
-        tr_td3.colSpan = 2
+    createElement('td', a.writer, tr2)
+    createElement('td', a.time, tr2)
+    const td3 = createElement('td', a.lover, tr2)
+
+    if(a.otherlover != undefined) {
+        createElement('td', a.otherlover, tr2)
     }
     else {
-        const tr_td4 = document.createElement('td')
-        tr_td4.innerText = a.otherlover;
-        tr.appendChild(tr_td4)
+        td3.colSpan = "2"
+        th3.colSpan = "2"
     }
 }
 
@@ -84,10 +78,13 @@ for (const a of arr) {
  * @param {string} celltype
  * @param {string} cellcontent
  * @param {HTMLTableRowElement} cellrow
+ * @returns {HTMLTableCellElement} 
  */
 function createElement(celltype, cellcontent, cellrow){
+
     const cell = document.createElement(celltype);
     cell.innerText = cellcontent;
     cellrow.appendChild(cell)
+
+    return cell
 }
-createElement()
