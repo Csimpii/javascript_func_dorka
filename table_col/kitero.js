@@ -1,35 +1,44 @@
-console.log("Hello world!");
-/** 
+//használható változók: let, const
+//const: értéke nem változtatható (állandó)
+//let: értéke később megváltoztatható
+
+//változó deklarálás JSDoc-kal
+/**
  * @type {string}
  */
-const hathet = "Hat-hét";
-console.log(hathet);
-//ezt a csillag type dolgot mindig a valtozo fole kell irni
+const word = "bamboozle" //nem változtatható érték
+console.log(word) //konzolra: bamboozle
 
+//tömb deklarálás
 /**
- * @type {string[]}
+ * @type {string[]} - stringeket tartalmazó tömb
  */
-const tomb = ["67", "MeinKampf", "Men in Black"]
-console.log(tomb[0])
+const tomb = ["a", "b"] //két elemű tömb létrehozása
+console.log(tomb[0]) //első elemet kiírja "a"
 
+//tömb bejárása for ciklussal (index alapján)
 for(let i = 0; i < tomb.length; i++){
-    console.log(tomb[1])
+    console.log(tomb[i]) //kiírja: "a", majd "b"
 }
 
-for(const a in tomb){
-    console.log(a)
+//tömb bejárása for...of ciklussal (értékek alapján)
+for(const a of tomb){
+    console.log(a) //kiírja: "a", majd "b"
 }
 
+//tömb bejárása for...in ciklussal (indexek alapján)
+//"for...in" a kulcsokat (indexeket) adja vissza, ezért a tömb elemeit a kulcs segítségével kell lekérni
 for(const key in tomb){
-    console.log(`${key}:${tomb[key]}`)
+    console.log(`${key}:${tomb[key]}`) //kiírja: "0:a" és "1:b"
 }
 
+//objektum deklarálása (kulcs-érték párokkal)
 /**
- * @type {{nev:string, age:number}}
+ * @type {{nev:string, age:number}} - ez egy objektum, aminek két tulajdonsága van: név: string, age: number
  */
 const a = {
-    nev:`Csimpi`,
-    age:17
+    nev : 'Dorka', //szöveges tulajdonság
+    age : 17 //numerikus tulajdonság
 }
-
-console.log(a)
+//objektum kiiratása konzolra
+console.log(a) // {név: "Dorka", age: 17}
