@@ -91,3 +91,126 @@ for(let a of arr) {
     }
 }
 
+const element = document.getElementById("htmlform");
+element.addEventListener("submit", function(e){
+    //default mukodes egy get-et kuld
+    e.preventDefault(); //meggatolja az alapertelmezett mukodest
+    /**
+     * @type {HTMLFormElement}
+     */
+    const event = e.target;
+    /**
+     * @type {HTMLInputElement}
+     */
+    const nemzetiseg = event.querySelector("#nemzetiseg");
+    /**
+     * @type {string}
+     */
+    const nemz_v = nemzetiseg.value
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const szerzo1 = event.querySelector("#szerzo1");
+    /**
+     * @type {string}
+     */
+    const szer1_v = szerzo1.value
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const szerzo2 = event.querySelector("#szerzo2");
+    /**
+     * @type {string}
+     */
+    const szer2_v = szerzo2.value
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const mu1 = event.querySelector("#mu1");
+    /**
+     * @type {string}
+     */
+    const mu1_v = mu1.value
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const mu2 = event.querySelector("#mu2");
+    /**
+     * @type {string}
+     */
+    const mu2_v = mu2.value
+
+    /**@type {{nationality:string, author1:string, author2?:string, literarypiece1?:string, literarypiece2?:string}} */
+    const obj = {}
+    obj.nationality = nemz_v;
+    obj.author1 = szer1_v;
+    obj.author2 = szer2_v;
+    obj.literarypiece1 = mu1_v;
+    obj.literarypiece2 = mu2_v;
+
+    const tbo = document.getElementById("test")
+    
+    const tr = document.createElement("tr");
+    tbo.appendChild(tr)
+
+    const tr_td1 = document.createElement('td');
+    tr_td1.innerText = obj.nationality;
+    tr.appendChild(tr_td1);
+
+    const tr_td2 = document.createElement('td');
+    tr_td2.innerText = obj.author1;
+    tr.appendChild(tr_td2);
+
+    const tr_td3 = document.createElement('td');
+    tr_td3.innerText = obj.literarypiece1;
+    tr.appendChild(tr_td3);
+
+    if (obj.author2 != "" && obj.literarypiece2 != "") {
+        const tr2 = document.createElement('tr');
+        tbo.appendChild(tr2);
+
+        const tr2_td2 = document.createElement('td');
+        tr2_td2.innerText = obj.author2;
+        tr2.appendChild(tr2_td2);
+
+        const tr2_td3 = document.createElement('td');
+        tr2_td3.innerText = obj.literarypiece2;
+        tr2.appendChild(tr2_td3);
+
+        tr_td1.rowSpan = 2;
+    }
+
+})
+
+const form = document.createElement("form")
+form.id = "jsform";
+document.body.appendChild(form)
+
+/**
+ * @param {string} labelText - label szövege
+ * @param {string} inputType - input típusa (pl. text)
+ * @param {string} inputId - input id-ja
+ * @param {HTMLElement} forms - amihez hozzáadjuk
+ */
+function createInputField(form, id, labelContent) {
+    const label = document.createElement('label'); 
+    label.htmlFor = id; 
+    label.innerText = labelContent; 
+    form.appendChild(label);
+
+    const input = document.createElement("input");
+    input.type = inputType;
+    input.id = id;
+    input.name = id;
+    form.appendChild(input)
+
+    
+}
+    createInputField(form, 'Nemzetiség', 'nemzetiseg'); 
+    createInputField(form, 'Szerző', 'korszak'); 
+    createInputField(form, 'Mű', 'szerelem1'); 
+    
