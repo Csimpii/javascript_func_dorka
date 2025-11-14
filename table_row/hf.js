@@ -211,7 +211,7 @@ formElement.addEventListener("submit", function(e){
     const mu2value = mu2.value;
 
     /** 
-     * @type {{nationality:string, author1:string, author2?:string, literarypiece1:string, literarypiece2?:string}} 
+     * @type {countrywriter[]} 
      */
     const obj = {}
     obj.nationality = nemzetisegvalue;
@@ -283,6 +283,59 @@ function generateHeader(table, headerList){
         createCell('th', i, tr)
     }
     return thead;
+}
+
+/**
+ * 
+ * @param {SubmitEvent} e 
+ */
+function htmlFormEventListener(e){
+    e.preventDefault(); //alapértelmezett működést gátolja
+    /**
+     * @type {HTMLFormElement}
+     */
+    const event = e.target;
+
+    /** @type {HTMLInputElement} */
+    const nemzetiseg = event.querySelector("#nemzetiseg");
+    /** @type {string} */
+    const nemzetisegvalue = nemzetiseg.value;
+
+    /** @type {HTMLInputElement} */
+    const szerzo1 = event.querySelector("#szerzo1");
+    /** @type {string} */
+    const szerzo1value = szerzo1.value;
+
+    /** @type {HTMLInputElement} */
+    const szerzo2 = event.querySelector("#szerzo2");
+    /** @type {string} */
+    const szerzo2value = szerzo2.value;
+
+    /** @type {HTMLInputElement}*/
+    const mu1 = event.querySelector("#mu1");
+    /** @type {string} */
+    const mu1value = mu1.value;
+
+    /** @type {HTMLInputElement} */
+    const mu2 = event.querySelector("#mu2");
+    /** @type {string} */
+    const mu2value = mu2.value;
+
+    /** 
+     * @type {countrywriter[]} 
+     */
+    const obj2 = {}
+    obj2.nationality = nemzetisegvalue;
+    obj2.author1 = szerzo1value;
+    obj2.literarypiece1 = mu1value;
+
+    if (szerzo2value && mu2value) {
+        obj2.author2 = szerzo2value;
+        obj2.literarypiece2 = mu2value;
+    }
+
+    arr.push(obj2);
+    renderTableBody(arr);
 }
 
 //---------htmlform
