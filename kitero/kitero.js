@@ -103,6 +103,11 @@ function hideBasedOnCheckbox(checkbox){
  * @returns {void}
  */
 function changeDropdownList(e){
+    /**
+     * @type {HTMLSelectElement}
+     */
+    const dropdownList = e.target;
+    hideBasedOnSelected(dropdownList);
 }
 
 /**
