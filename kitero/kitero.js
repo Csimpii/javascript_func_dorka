@@ -5,6 +5,7 @@ htmlDropdown.addEventListener('change', changeDropdownList) // hozzáadunk egy e
 const htmlcheckbox = document.getElementById('htmlcheckbox'); // elkérjük a htmlcheckbox id-val rendelkező elemet
 hideBasedOnCheckbox(htmlcheckbox); // a checkboxnak van alapértelmezett értéke (hamis)
 htmlcheckbox.addEventListener('change', changeCheckbox) // hozzáadunk egy eventlistenert
+createOtherDivForSelect(htmlDropdown)
 
 /**
  * 
@@ -90,7 +91,23 @@ function hideBasedOnSelected(dropdownList){
  * @returns {void}
  */
 function hideBasedOnCheckbox(checkbox){
+    /**
+     * @type {HTMLDivElement}
+     */
+    const valt = checkbox.parentElement;
+    /**
+     * @type {Boolean}
+     */
+    const checked = checkbox.checked
+    if (checked){
 
+        makeInvisibleBasedOnid(valt, "no")
+        makeVisibleBasedOnId(valt, "ferfi")
+    }
+    else{
+        makeVisibleBasedOnId(valt, "no")
+        makeInvisibleBasedOnid(valt, "ferfi")
+    }
 }
 
 /**
@@ -121,4 +138,6 @@ function changeDropdownList(e){
  * @returns {void}
  */
 function changeCheckbox(e){
+    const a = e.target
+    hideBasedOnCheckbox(a)
 }
